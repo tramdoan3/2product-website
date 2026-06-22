@@ -109,6 +109,60 @@ app.post("/create-checkout-session", async (req, res) => {
 
   <!End Javascrip4>
 
+  <!Step6AddJavascriptbackend Start>
+
+
+  const express = require("express");
+const cors = require("cors");
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+require("dotenv").config();
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+// Health check
+app.get("/", (req, res) => {
+  res.send("NLBA Stripe Backend is running");
+});
+
+// Create Stripe Checkout Session
+app.post("/create-checkout-session", async (req, res) => {
+  try {
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      mode: "payment",
+      line_items: [
+        {
+          price_data: {
+            currency: "usd",
+            product_data: {
+              name: "NLBA Laptop Battery Analyzer",
+            },
+            unit_amount: 19900, // $199
+          },
+          quantity: 1,
+        },
+      ],
+      success_url: "https://yourwebsite.com/success.html",
+      cancel_url: "https://yourwebsite.com/cancel.html",
+    });
+
+    res.json({ id: session.id });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Payment session failed" });
+  }
+});
+
+// Start server
+const PORT = process.env.PORT || 4242;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  <!EndStep6Javescript End>
+
+
   
   <head>
   <meta charset="UTF-8" />
