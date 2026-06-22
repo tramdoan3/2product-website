@@ -81,6 +81,34 @@ document.getElementById("checkout-button").addEventListener("click", function ()
 
 
   <!EndwithPaypal3>
+  <!StartJavascrip4>
+const stripe = require("stripe")("YOUR_SECRET_KEY");
+
+app.post("/create-checkout-session", async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ["card"],
+    line_items: [
+      {
+        price_data: {
+          currency: "usd",
+          product_data: {
+            name: "NLBA Laptop Battery Analyzer"
+          },
+          unit_amount: 19900,
+        },
+        quantity: 1,
+      },
+    ],
+    mode: "payment",
+    success_url: "https://yourwebsite.com/success",
+    cancel_url: "https://yourwebsite.com/cancel",
+  });
+
+  res.json({ id: session.id });
+});
+
+  <!End Javascrip4>
+
   
   <head>
   <meta charset="UTF-8" />
