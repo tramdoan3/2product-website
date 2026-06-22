@@ -162,7 +162,20 @@ const PORT = process.env.PORT || 4242;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
   <!EndStep6Javescript End>
 
-
+<!Javacripconectbackendstep10>
+document.getElementById("checkout-button").addEventListener("click", () => {
+  fetch("http://localhost:4242/create-checkout-session", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  .then(res => res.json())
+  .then(session => {
+    return stripe.redirectToCheckout({ sessionId: session.id });
+  });
+});
+  <!@Javacsriptconnectbackend ENDstep10>
   
   <head>
   <meta charset="UTF-8" />
