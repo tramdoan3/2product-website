@@ -3,7 +3,7 @@
 
   <!Start add Whatapp1>
 <header>
-  <h1>NLBA Laptop Battery Analyzer</h1>
+  <h1>NLBA1 Professional Laptop Battery Analyzer</h1>
   <p>Professional battery diagnostic tool for technicians and repair shops.</p>
 
   <!-- Main Buy Button -->
@@ -51,7 +51,7 @@
   
   <!Endwith Whatapp andCreditcardpay2>
 
-<!StartwithPaypal3>
+<!StartwithPaypal3> <!Hidden
   
 <script src="https://js.stripe.com/v3/"></script>
 
@@ -163,6 +163,7 @@ app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
   <!EndStep6Javescript End>
 
 <!Javacripconectbackendstep10>
+  
 document.getElementById("checkout-button").addEventListener("click", () => {
   fetch("http://localhost:4242/create-checkout-session", {
     method: "POST",
@@ -175,7 +176,7 @@ document.getElementById("checkout-button").addEventListener("click", () => {
     return stripe.redirectToCheckout({ sessionId: session.id });
   });
 });
-  <!@Javacsriptconnectbackend ENDstep10>
+  <!@Javacsriptconnectbackend ENDstep10>       END HIDDEN>
 
   <!AddimagesNLBA1Start>
 <img src="nlba1.jpg" alt="NLBA1 Battery Analyzer"
